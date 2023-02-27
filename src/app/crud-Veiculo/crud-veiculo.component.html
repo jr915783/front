@@ -74,6 +74,7 @@
         <div class="form-group">
           <small>Tipo</small>
           <select class="form-control" formControlName="tipo" [attr.disabled]="habilitarCampo" (change)="numeroPassageiros()">
+            <option value="Selecionar tipo" [selected] = "true" [disabled]="true">Selecionar tipo</option>
             <option value="Ônibus">Ônibus</option>
             <option value="Caminhão">Caminhão</option>
           </select>

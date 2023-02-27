@@ -25,6 +25,7 @@ export class VeiculoComponent implements OnInit {
   titudoModalCadastrarEditar: string = "";
   alertaCAmposEditar: boolean = false;
   alertaListaCadastro: string = "";
+  
 
   constructor(private veiculoService: VeiculoService,
     private modalService: BsModalService,
@@ -47,15 +48,7 @@ export class VeiculoComponent implements OnInit {
      }
   }
 
-  criarFormularioDeVeiculo() {
-    this.formularioDeVeiculoCriar = this.fb.group({
-      chassi: ['', Validators.compose([
-        Validators.required,
-      ])],
-      tipo: ['', Validators.compose([Validators.required])],
-      numeroPassageiros: [''],
-      cor: ['', Validators.compose([Validators.required])],
-    });
+  criarFormularioDeVeiculo() {   
     this.formularioDeVeiculo = this.fb.group({
       id: [''],
       chassi: ['', Validators.compose([
