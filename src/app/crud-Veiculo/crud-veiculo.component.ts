@@ -25,6 +25,7 @@ export class VeiculoComponent implements OnInit {
   titudoModalCadastrarEditar: string = "";
   alertaCAmposEditar: boolean = false;
   alertaListaCadastro: string = "";
+  mostrarSelecionar: boolean = false;
   
 
   constructor(private veiculoService: VeiculoService,
@@ -71,7 +72,7 @@ export class VeiculoComponent implements OnInit {
 
     this.tipoRequest = tipoRequest;
 
-    if (tipoRequest === "atualizar") {
+    if (tipoRequest === "atualizar") {      
       this.formularioDeVeiculo.get('id')?.setValue(veiculo?.id);
       this.formularioDeVeiculo.get('chassi')?.setValue(veiculo?.chassi);
       this.formularioDeVeiculo.get('tipo')?.setValue(veiculo?.tipo);
@@ -80,11 +81,13 @@ export class VeiculoComponent implements OnInit {
       this.titudoModalCadastrarEditar = "Editar Veículo";
       this.habilitarCampo = true;
       this.alertaCAmposEditar = true;
+      this.mostrarSelecionar = false;
     } else {
       this.formularioDeVeiculo.reset();
       this.habilitarCampo = null;
       this.titudoModalCadastrarEditar = "Adicionar Novo Veículo";
       this.alertaCAmposEditar = false;
+      this.mostrarSelecionar = true;
     }
 
     this.editarVeiculo = veiculo;
