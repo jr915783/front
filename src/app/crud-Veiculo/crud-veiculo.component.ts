@@ -40,8 +40,11 @@ export class VeiculoComponent implements OnInit {
     if (chassi != "") {
       chassi = chassi.toLocaleLowerCase();
       this.listaVeiculos = this.listaVeiculos.filter((v: Veiculo) => v.chassi == chassi);
-      this.listaVeiculos.length == 0 ? (this.filtroNaoEncotrado = true) : (this.filtroNaoEncotrado = false);
-    } else { this.buscarVeiculos(); }
+      this.listaVeiculos.length == 0 ? this.filtroNaoEncotrado = true : this.filtroNaoEncotrado = false;
+    } else { 
+      this.filtroNaoEncotrado = false;
+      this.buscarVeiculos();
+     }
   }
 
   criarFormularioDeVeiculo() {

@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { GridTimesComponent } from './grid-times/grid-times.component';
 import { VeiculoComponent } from './crud-Veiculo/crud-veiculo.component';
 
 const routes: Routes = [
-  {path:'tabela', component: VeiculoComponent},  
-  {path:'', redirectTo:'tabela', pathMatch:'full'},
-  {path:'**', redirectTo:'tabela', pathMatch:'full'}
+  {path:'home', component: VeiculoComponent},  
+  {path:'', redirectTo:'home', pathMatch:'full'},
+  {path:'**', redirectTo:'home', pathMatch:'full'}
 ];
 
 @NgModule({
