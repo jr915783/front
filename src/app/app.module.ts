@@ -11,14 +11,15 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NavComponent } from './shared/nav/nav/nav.component';
 import { FooterComponent } from './shared/footer/footer/footer.component';
 import { ToastrModule } from 'ngx-toastr';
-import { VeiculoComponent } from './crud-Veiculo/crud-veiculo.component';
+import { PessoaComponent } from './crud-Pessoa/crud-pessoa.component';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    VeiculoComponent,
+    PessoaComponent,
     NavComponent,
     FooterComponent  
   ],

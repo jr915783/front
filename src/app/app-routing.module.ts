@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PessoaComponent } from './crud-Pessoa/crud-pessoa.component';
 
-import { VeiculoComponent } from './crud-Veiculo/crud-veiculo.component';
+
 
 const routes: Routes = [
-  {path:'home', component: VeiculoComponent},  
+  {path:'home', component: PessoaComponent},  
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'**', redirectTo:'home', pathMatch:'full'}
 ];

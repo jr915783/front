@@ -1,0 +1,106 @@
+<div class="container mt-5">
+  <h4 class="mt-5">Cadastros</h4>
+
+  <div class="d-flex justify-content-between">
+    <div>
+      <button type="button" class="btn btn-dark mt-4"  (click)="openModalAdd(template)"><i class="fa fa-plus"></i>
+        Adicionar</button>
+    </div>
+
+    <form class="form-inline mt-4">
+      <div class="form-group mx-sm-3 mb-2">
+        <input type="text"  [(ngModel)]="filtroGrid" [ngModelOptions]="{standalone: true}" class="form-control"
+          placeholder="Pesquisar por nome" (input)="filtrarGrid(filtroGrid)" >
+      </div>
+      <button type="button" class="btn btn-dark mb-2" (click)="filtrarGrid(filtroGrid)"><i
+          class="fa fa-search"></i></button>
+    </form>
+  </div>
+
+  <table class="table table-striped mt-2 mb-5">
+    <thead>
+      <tr class="text-center">
+        <th scope="col">Nome</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">WhatsApp</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <tr *ngFor="let cadastro of listaCadastros">
+        <td class="align-middle">{{cadastro.pessoa.nome}}</td>
+        <td class="align-middle">{{cadastro.telefone}}</td>
+        <td class="align-middle">{{cadastro.email}}</td>
+        <td class="align-middle">{{cadastro.whatsApp}}</td>
+        <td class="text-right"><small type="button" class="btn btn-dark mr-2 text-light"
+            (click)="openModalAdd(template, cadastro, 'atualizar')" data-toggle="tooltip" data-placement="top" title="Editar pessoa"><i class="fa fa-pencil"></i> </small>
+          <small type="button" class="btn btn-danger mr-2"
+            (click)="openModalDeletarPessoa(templateDetelarPessoa, cadastro)" data-toggle="tooltip" data-placement="top" title="Deletar pessoa"><i class="fa fa-trash"></i>
+            </small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="filtroNaoEncotrado" class="mt-2">
+    <h3 class="text-center text-secondary">Nenhum cadastro encontrado!</h3>
+  </div>
+  <h3 class="text-center text-secondary">{{alertaListaCadastro}}</h3>
+
+  <ng-template #template>
+    <div class="modal-header">
+      <h5 class="modal-title pull-left">{{titudoModalCadastrarEditar}}</h5>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">      
+      
+      <form [formGroup]="formularioCadastro">
+        <div class="form-group">
+          <small>Nome</small>
+          <input type="text" formControlName="nome" class="form-control" aria-describedby="emailHelp"
+            placeholder="Digite seu nome">
+        </div>       
+        <div class="form-group">
+          <small>Telefone</small>
+          <input type="text" formControlName="telefone" class="form-control"
+            placeholder="Ex (11) 99999-9999" >
+        </div>
+        <div class="form-group">
+          <small>E-mail</small>
+          <input type="text" formControlName="email" class="form-control"
+            placeholder="exemplo@exemplo.com">
+        </div>
+        <div class="form-group">
+          <small>WhatsApp</small>
+          <input type="text" formControlName="whatsApp" class="form-control" placeholder="Ex (11) 99999-9999">
+        </div>
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-dark" [disabled]="!formularioCadastro.valid"
+            (click)="cadastrarPessoa()">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </ng-template>
+
+  <ng-template #templateDetelarPessoa>
+    <div class="modal-header">
+      <h5 class="modal-title pull-left">Deletar Cadastro</h5>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Tem certeza que deseja deletar o cadastro  de <b>{{editarCadastro.pessoa.nome}}</b> ?</p>
+
+      <div class="text-right">
+        <small type="button" class="btn btn-dark mr-2 text-light" (click)="deletarPessoa(editarCadastro.id)"><i
+            class="fa fa-thumbs-up"></i> Sim</small>
+        <small type="button" class="btn btn-danger mr-2" (click)="modalRef?.hide()"><i class="fa fa-thumbs-down"></i>
+          Não</small>
+      </div>
+
+    </div>
+  </ng-template>
+</div>
